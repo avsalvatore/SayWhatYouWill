@@ -12,11 +12,11 @@ import UIKit
 enum DialogViewType {
     case dialog(text: String)
     case thinking
-    case none
+    case none(text: String?)
 }
 
 class DialogView: UIView {
-    fileprivate let viewType: DialogViewType = .none
+    fileprivate var viewType: DialogViewType = .none(text: nil)
     
     fileprivate let outputTextView: UITextView = {
         let view = UITextView(frame: .zero)
@@ -31,6 +31,10 @@ class DialogView: UIView {
         let image = UIImage(named: "Rectangle")
         let imageView = UIImageView(image: image)
         return imageView
+    }()
+    
+    fileprivate lazy var thinkingHUD: ProgressHUD = {
+        return ProgressHUD(frame: self.bounds)
     }()
     
     override init(frame: CGRect) {
@@ -61,7 +65,7 @@ class DialogView: UIView {
                                                       options: [],
                                                       metrics: nil,
                                                       views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[output]-(45)-|",
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[output]-(60)-|",
                                                       options: [],
                                                       metrics: nil,
                                                       views: views))
@@ -72,18 +76,33 @@ class DialogView: UIView {
     }
     
     func update(with type: DialogViewType) {
+        switch viewType {
+        case .thinking:
+            thinkingHUD.animateOut()
+        case .none, .dialog(_):
+            break
+        }
         switch type {
-        case .none:
+        case .thinking:
             backgroundImageView.isHidden = true
             outputTextView.isHidden = true
-            fallthrough
-        case .thinking:
-            break
+            outputTextView.text = nil
+            thinkingHUD.removeFromSuperview()
+            thinkingHUD = ProgressHUD(frame: self.bounds)
+            addSubview(thinkingHUD)
+            thinkingHUD.animateIn()
+        case let .none(text):
+            thinkingHUD.isHidden = true
+            backgroundImageView.isHidden = true
+            outputTextView.isHidden = false
+            outputTextView.text = text
         case let .dialog(text):
+            thinkingHUD.isHidden = true
             backgroundImageView.isHidden = false
             outputTextView.isHidden = false
             outputTextView.text = text
         }
+        viewType = type
     }
-    
 }
+

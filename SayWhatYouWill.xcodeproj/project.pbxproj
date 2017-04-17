@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B2F398F1EA45A440015A338 /* DialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2F398E1EA45A430015A338 /* DialogView.swift */; };
+		1B3EF2BE1EA4A00A007C6106 /* SelfLoveContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3EF2BD1EA4A00A007C6106 /* SelfLoveContext.swift */; };
+		1B3EF2C11EA4A194007C6106 /* SelfLoveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3EF2C01EA4A194007C6106 /* SelfLoveViewModel.swift */; };
 		1B407C191EA2AE2B004A6F80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B407C181EA2AE2B004A6F80 /* AppDelegate.swift */; };
 		1B407C1B1EA2AE2B004A6F80 /* TextManipulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B407C1A1EA2AE2B004A6F80 /* TextManipulationViewController.swift */; };
 		1B407C201EA2AE2C004A6F80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B407C1F1EA2AE2C004A6F80 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		1B2F398E1EA45A430015A338 /* DialogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogView.swift; sourceTree = "<group>"; };
+		1B3EF2BD1EA4A00A007C6106 /* SelfLoveContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfLoveContext.swift; sourceTree = "<group>"; };
+		1B3EF2C01EA4A194007C6106 /* SelfLoveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfLoveViewModel.swift; sourceTree = "<group>"; };
 		1B407C151EA2AE2B004A6F80 /* SayWhatYouWill.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SayWhatYouWill.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B407C181EA2AE2B004A6F80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B407C1A1EA2AE2B004A6F80 /* TextManipulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextManipulationViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +109,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B3EF2BC1EA49FA9007C6106 /* Helper Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B407C541EA30DAC004A6F80 /* ProgressHUD.swift */,
+				1B2F398E1EA45A430015A338 /* DialogView.swift */,
+				1B55BD291EA3437E00545A44 /* BorderedTextField.swift */,
+			);
+			name = "Helper Views";
+			sourceTree = "<group>";
+		};
+		1B3EF2BF1EA4A012007C6106 /* Self Love */ = {
+			isa = PBXGroup;
+			children = (
+				1B3EF2BD1EA4A00A007C6106 /* SelfLoveContext.swift */,
+				1B3EF2C01EA4A194007C6106 /* SelfLoveViewModel.swift */,
+			);
+			name = "Self Love";
+			sourceTree = "<group>";
+		};
 		1B407C0C1EA2AE2B004A6F80 = {
 			isa = PBXGroup;
 			children = (
@@ -130,12 +153,11 @@
 		1B407C171EA2AE2B004A6F80 /* SayWhatYouWill */ = {
 			isa = PBXGroup;
 			children = (
-				1B407C541EA30DAC004A6F80 /* ProgressHUD.swift */,
 				1B407C181EA2AE2B004A6F80 /* AppDelegate.swift */,
 				1B407C1A1EA2AE2B004A6F80 /* TextManipulationViewController.swift */,
-				1B2F398E1EA45A430015A338 /* DialogView.swift */,
 				1B407C461EA2B5EB004A6F80 /* NetworkingClient.swift */,
-				1B55BD291EA3437E00545A44 /* BorderedTextField.swift */,
+				1B3EF2BC1EA49FA9007C6106 /* Helper Views */,
+				1B3EF2BF1EA4A012007C6106 /* Self Love */,
 				1B407C531EA30D88004A6F80 /* Yoda */,
 				1B407C4C1EA2D74D004A6F80 /* extensions */,
 				1B407C1F1EA2AE2C004A6F80 /* Assets.xcassets */,
@@ -489,7 +511,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B407C4B1EA2D616004A6F80 /* Font+SWYW.swift in Sources */,
+				1B3EF2BE1EA4A00A007C6106 /* SelfLoveContext.swift in Sources */,
 				1B407C551EA30DAC004A6F80 /* ProgressHUD.swift in Sources */,
+				1B3EF2C11EA4A194007C6106 /* SelfLoveViewModel.swift in Sources */,
 				1B407C491EA2C459004A6F80 /* YodaAPIClient.swift in Sources */,
 				1B407C501EA2F1D2004A6F80 /* YodaSaysContext.swift in Sources */,
 				1B407C521EA2F562004A6F80 /* YodaSaysViewModel.swift in Sources */,
