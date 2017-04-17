@@ -59,15 +59,6 @@ class TextManipulationViewController: UIViewController {
         return field
     }()
     
-//    fileprivate let outputTextView: UITextView = {
-//        let view = UITextView(frame: .zero)
-//        view.backgroundColor = .lightGray
-//        view.textAlignment = .center
-//        view.font = .defaultMediumFont(of: 20.0)
-//        view.isEditable = false
-//        return view
-//    }()
-    
     fileprivate let outputTextView: DialogView = DialogView(frame: .zero)
 
     fileprivate lazy var backgroundImageView = UIImageView(frame: .zero)
@@ -93,18 +84,6 @@ class TextManipulationViewController: UIViewController {
         setup()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        guard let maskImage = UIImage(named: "Rectangle") else { return }
-//        let maskView = UIImageView(image: maskImage)
-//        maskView.frame = outputTextView.bounds
-//        outputTextView.mask = maskView
-//        outputTextView.textContainerInset = UIEdgeInsets(top: 10,
-//                                                         left: 10,
-//                                                         bottom: outputTextView.bounds.height / 2,
-//                                                         right: 10)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -116,8 +95,7 @@ class TextManipulationViewController: UIViewController {
         inputTextField.delegate = self
         inputTextField.attributedPlaceholder = NSAttributedString(string: textManipulator.viewModel.inputPlaceholder,
                                                                   attributes: placeholderAttributes)
-//        outputTextView.backgroundColor = .white
-//        outputTextView.text = textManipulator.viewModel.introMessage
+        outputTextView.update(with: .none(text: textManipulator.viewModel.introMessage))
         view.addSubview(inputTextField.usingConstraints())
         view.addSubview(outputTextView.usingConstraints())
         setupConstraints()
@@ -178,13 +156,10 @@ extension TextManipulationViewController: UITextFieldDelegate {
         animateOutputIsProcessing()
         textManipulator.translate(text: text) { [weak self] translatedText, error in
             guard let `self` = self else { return }
-            self.removeOutputAnimation()
             if error != nil {
                 self.outputTextView.update(with: .dialog(text: self.textManipulator.viewModel.errorMessage))
-              //  self.outputTextView.text = self.textManipulator.viewModel.errorMessage
             } else if let resultText = translatedText {
                 self.outputTextView.update(with: .dialog(text: resultText))
-              //  self.outputTextView.text = translatedText
             }
         }
     }
@@ -198,21 +173,7 @@ extension TextManipulationViewController: UITextFieldDelegate {
 //MARK: Output Animation
 extension TextManipulationViewController {
     func animateOutputIsProcessing() {
-       // outputTextView.backgroundColor = .lightGray
-   //     outputTextView.text = ""
         self.outputTextView.update(with: .thinking)
-        let pulseAnimation:CABasicAnimation = CABasicAnimation(keyPath: "transform.scale")
-        pulseAnimation.duration = 1.0
-        pulseAnimation.fromValue = NSNumber(value: 0.95)
-        pulseAnimation.toValue = NSNumber(value: 1.0)
-        pulseAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        pulseAnimation.autoreverses = true
-        pulseAnimation.repeatCount = FLT_MAX
-        self.outputTextView.layer.add(pulseAnimation, forKey: "pulseAnimation")
-    }
-    
-    func removeOutputAnimation() {
-        self.outputTextView.layer.removeAllAnimations()
     }
 }
 

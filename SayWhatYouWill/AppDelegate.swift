@@ -4,7 +4,22 @@
 //
 //  Created by ALEXANDRA SALVATORE on 4/15/17.
 //  Copyright © 2017 RowOut. All rights reserved.
-//
+
+/* For this project, I used a combination of MVVM & DCI Architecture
+ * The goal of the project was to make an app that uses the Yoda Speak API
+ * to take text input and output what the API replies. 
+ * This app does that. In order to add different api 'translation' clients, 
+ * The coder would only have to write an API Client for that service (see YodaAPIClient),
+ * ( can take advantage of the Networking client that wraps AFNetworking )
+ * a TextManipulator (see YodaSaysContext) & TextManipulatorViewModel (see YodaSaysViewModel)
+ * These files are all together are under 100 lines of code. 
+ * 
+ * TextManipulationViewController can be initialized with any instance of TextMainuplator
+ * and it will take care of the input output styling.
+ *
+ *
+ *
+ */
 
 import UIKit
 
@@ -15,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        /* uncomment line below to demonstrate different contexts
+         * working with TextManipulationViewController
+         */
+       // let context = SelfLoveContext()
         let context = YodaSaysContext()
         if let window = window {
             let viewController = TextManipulationViewController(with: context)
